@@ -37,3 +37,19 @@ Lembrando, cada usuario deverá ter seu login e as lojas que ele trabalha (pode 
 ------------------------------------------------------------calculo---------------------------------------------------------------------
 
 (valor de entrada - valor de saida) - saldo do dia anterior.
+
+
+Metodos GET
+
+	- /entradas (consultar somente os valores de entradas)
+		* para consultar o usuario deve necessariamente passar os seguitens argumentos.
+			Loja
+			Data
+	- /saidas (consultar somente os valores de saidas)
+		* para consultar o usuario deve necessariamente passar os seguitens argumentos.
+			Loja
+			Data
+	- /entradasESaidas (consultar os 2 tipos de dados ao mesmo tempo)
+		* para consultar o usuario deve necessariamente passar os seguitens argumentos.
+			Loja
+			Data
