@@ -1,1 +1,0 @@
-aqui no models é onde eu importo o banco de dados da minha aplicação e faço as consultas.
