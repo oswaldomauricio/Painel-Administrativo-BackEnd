@@ -7,14 +7,13 @@ from sqlalchemy.orm import sessionmaker
 load_dotenv() 
 
 PORTBD = os.getenv('PORTBD')
-INSTANTCLIENT = os.getenv('INSTANTCLIENT')
 HOSTBD = os.getenv('HOSTBD')
 SERVICENAME = os.getenv('SERVICENAME')
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 cx_Oracle.init_oracle_client(
-    lib_dir=INSTANTCLIENT)
+    lib_dir=r'C:\instantclient-basic-windows.x64-23.6.0.24.10\instantclient_23_6')
 
 
 class DBconnection:
