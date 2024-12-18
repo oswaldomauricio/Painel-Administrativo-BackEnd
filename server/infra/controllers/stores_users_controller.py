@@ -27,3 +27,30 @@ class ResponseStoreUser:
             with DBconnection() as db:
                 db.session.query(Users_Stores).filter(Users_Stores.ID_USERS == id_users).delete()
                 db.session.commit()
+
+
+class StoreUsersController:
+    def __init__(self, response_users, response_store_users):
+        self.response_users = response_users
+        self.response_store_users = response_store_users
+
+    def get_store_by_user(self, name, password):
+        """Valida e retorna o usuário e suas lojas."""
+        if not name or not password:
+            return {'error': 'Nome e senha são obrigatórios!', 'status': 400}
+
+        users = self.response_users.select()
+        stores_users = self.response_store_users.select()
+
+        users_to_dict = [user.to_dict() for user in users]
+        stores_to_dict = [store.to_dict() for store in stores_users]
+
+        for user in users_to_dict:
+            if user['name'] == name and user['password'] == password:
+                user_stores = [
+                    store for store in stores_to_dict if store['id_users'] == user['id']
+                ]
+                return {'user': user, 'stores': user_stores, 'status': 200}
+
+        # Caso nenhum usuário seja encontrado
+        return {'error': 'Informações inválidas ou usuário não encontrado!', 'status': 404}
