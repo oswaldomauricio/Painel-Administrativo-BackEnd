@@ -16,7 +16,7 @@ class Users_Stores(Base):
     ID_USERS = Column(Integer, ForeignKey("users.ID"))
 
     def __repr__(self):
-        return f"<Users(Id={self.ID}, loja='{self.LOJA}', id_users='{self.ID_USERS}')>"
+        return f"[id={self.ID}, loja='{self.LOJA}', id_users='{self.ID_USERS}']"
 
     def to_dict(self):
         return {
