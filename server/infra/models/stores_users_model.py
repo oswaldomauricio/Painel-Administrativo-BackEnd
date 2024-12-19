@@ -9,7 +9,7 @@ from configs.base import Base
 from sqlalchemy import Column, Integer, ForeignKey
 
 class Users_Stores(Base):
-    __tablename__ = 'lojas_users'
+    __tablename__ = 'D_USER_STORES'
 
     ID = Column(Integer, nullable=False, primary_key=True, autoincrement=True)
     LOJA = Column(Integer, nullable=False)
