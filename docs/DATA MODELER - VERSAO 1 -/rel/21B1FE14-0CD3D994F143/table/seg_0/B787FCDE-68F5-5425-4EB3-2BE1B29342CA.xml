@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B787FCDE-68F5-5425-4EB3-2BE1B29342CA" schemaObject="E2D0561B-D54D-6B45-0920-BB25B5A0E858" name="D_USERS">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>ANALYTICS</sourceObjSchema>
+<sourceObjName>USERS</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<ordsAlias>users</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="83E5EAB2-2EC5-D327-E76C-8362544F5B17">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>USERS</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="NAME" id="F440C46F-2291-9BD4-7584-82CEE8818D1D">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>USERS</sourceObjSchema>
+<sourceObjName>NAME</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PASSWORD" id="4DFBB9D4-0095-1E4C-1C99-EF5E9E61C8D3">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>USERS</sourceObjSchema>
+<sourceObjName>PASSWORD</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROLE" id="1B7337AD-1974-8AC5-01DC-BA3A79E187A9">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>USERS</sourceObjSchema>
+<sourceObjName>ROLE</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25 BYTE</dataTypeSize>
+<defaultValue>&apos;USER&apos;</defaultValue>
+<ownDataTypeParameters>25 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2CDB498F-16FD-6EF5-5E28-BD8CA9E9FDBC" schemaObject="E2D0561B-D54D-6B45-0920-BB25B5A0E858" name="USERS_PK">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>ANALYTICS</sourceObjSchema>
+<sourceObjName>SYS_C00529026</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="83E5EAB2-2EC5-D327-E76C-8362544F5B17"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

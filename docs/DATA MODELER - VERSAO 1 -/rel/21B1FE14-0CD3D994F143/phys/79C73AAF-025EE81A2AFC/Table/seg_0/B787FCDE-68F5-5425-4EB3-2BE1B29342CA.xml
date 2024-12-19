@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="D_USERS" directorySegmentName="seg_0" id="B787FCDE-68F5-5425-4EB3-2BE1B29342CA">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<schemaObject>E2D0561B-D54D-6B45-0920-BB25B5A0E858</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F8279EBF-2ADE-B2DA-7CB4-9CC810C197B7</segment>
+<tableSpace>C2D1DF8B-712F-276C-8737-75DCFB38A04B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ROLE" id="1B7337AD-1974-8AC5-01DC-BA3A79E187A9">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<defaultValue>&apos;USER&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="PASSWORD" id="4DFBB9D4-0095-1E4C-1C99-EF5E9E61C8D3">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="83E5EAB2-2EC5-D327-E76C-8362544F5B17">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="NAME" id="F440C46F-2291-9BD4-7584-82CEE8818D1D">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="USERS_PK" id="2CDB498F-16FD-6EF5-5E28-BD8CA9E9FDBC">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<schemaObject>E2D0561B-D54D-6B45-0920-BB25B5A0E858</schemaObject>
+<segment>83C0B8D9-7848-EA76-34E4-1960A5519BDC</segment>
+<tableSpace>C2D1DF8B-712F-276C-8737-75DCFB38A04B</tableSpace>
+<indexSegment>83C0B8D9-7848-EA76-34E4-1960A5519BDC</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

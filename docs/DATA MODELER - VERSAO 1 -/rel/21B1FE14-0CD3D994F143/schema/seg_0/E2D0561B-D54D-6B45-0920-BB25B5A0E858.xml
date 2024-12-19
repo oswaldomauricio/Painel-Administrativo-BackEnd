@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ANALYTICS" directorySegmentName="seg_0" id="E2D0561B-D54D-6B45-0920-BB25B5A0E858">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</SchemaObject>

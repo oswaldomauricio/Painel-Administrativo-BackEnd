@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Diagram class="oracle.dbtools.crest.swingui.logical.DPVLogical" name="Logical" id="743B3BA1-9D20-2384-DADC-B519810A74C5">
+<createdBy>oswaldo.adm</createdBy>
+<modifiedBy>oswaldo.adm</modifiedBy>
+<createdTime>2024-12-19 18:54:31 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>false</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="E8372F79-FFD9-C720-D9AB-E2BF9C8EB395" otype="Entity" vid="7E1E86AD-FF80-B671-9400-A3E4C047BBFF">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="50" y="50" width="170" height="110"/>
+</OView>
+</objectViews>
+<displays>
+<Display class="oracle.dbtools.crest.swingui.logical.DPVLogical" name="Display_1" id="23A4A650-6EBD-8822-1B89-679F16C28885">
+<createdBy>oswaldo.adm</createdBy>
+<modifiedBy>oswaldo.adm</modifiedBy>
+<createdTime>2024-12-19 18:54:35 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>true</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="E8372F79-FFD9-C720-D9AB-E2BF9C8EB395" otype="Entity" vid="13DCD378-DC74-ABEF-18E1-73EB73579B28">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="228" y="108" width="170" height="110"/>
+</OView>
+</objectViews>
+</Display>
+</displays>
+</Diagram>

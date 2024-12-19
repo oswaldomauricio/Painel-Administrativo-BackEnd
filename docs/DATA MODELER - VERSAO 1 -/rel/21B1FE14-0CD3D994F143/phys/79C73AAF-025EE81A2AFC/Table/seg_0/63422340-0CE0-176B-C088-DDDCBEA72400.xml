@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="F_CAIXA" directorySegmentName="seg_0" id="63422340-0CE0-176B-C088-DDDCBEA72400">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="D_USER_STORES_ID" id="05C0FA23-3CE6-E19E-C474-BE0E8210CC70">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:52:24 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="STATUS" id="0AD9D335-282B-C581-BE7E-830BB908D949">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NUM_DOC" id="4EFA544F-1620-8CFC-A4D3-4D5B2D5714BA">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TIPO_OPERACAO" id="6FBD4B1B-EED8-5EA2-C175-CD98249C0F87">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORIGEM" id="9AB537AB-7C24-7EB5-B02E-6BFCE3334AD9">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="D_USERS_ID" id="A8E81CDC-81A2-5FE0-157B-60C1222856F4">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:52:13 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA" id="C5B84B3A-BE40-CB8D-F386-5C7E900C9F3D">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="D675BB8B-8D81-D418-05FF-69C75FA668FA">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VALOR" id="F776FEED-AE50-6C65-15A2-0B9CB1DD355C">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="F_CAIXA_D_USERS_FK" id="5F21EB17-AB76-37EA-F4D5-9665C81BDC48">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:52:13 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="F_CAIXA_D_USER_STORES_FK" id="D9651FA9-7FEB-AA87-1677-C2814C9EABDC">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:52:24 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="F_CAIXA_PK" id="127AA8B7-C15E-E566-3117-B05AED74FD45">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:50:34 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

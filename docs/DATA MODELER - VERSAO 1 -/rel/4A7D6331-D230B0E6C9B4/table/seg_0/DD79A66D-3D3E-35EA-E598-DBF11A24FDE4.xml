@@ -1,0 +1,150 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DD79A66D-3D3E-35EA-E598-DBF11A24FDE4" name="F_CAIXA">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:25:38 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="0C3BBE01-F1CC-5A06-96D1-1CB9ADC35874">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<ownDataTypeParameters>,15,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA" id="8AC5A0E8-6EFB-2D38-4A06-91B25D356ED7">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUM_DOC" id="28E40B1E-011C-3CEA-B03E-6FA3A6EB586B">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 BYTE</dataTypeSize>
+<ownDataTypeParameters>15 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORIGEM" id="6D319086-BDAB-4D65-D2EF-B1E7096C0E93">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO_OPERACAO" id="52D87F16-38D8-524D-2DFE-573BD5DB4944">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALOR" id="D6DB352B-42DF-0A0B-C21C-763035060CF9">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUS" id="F6FD10B0-3261-11F1-FF38-CB24828B7F88">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:27:03 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_USER_STORES" id="7A432D51-5529-3D8C-07D5-A5D1518C47A0">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:38:28 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="79687F3F-DEAD-724B-AA1D-9D73FF4A8761" referredColumn="BA43F26B-C95A-8017-73D9-FA6CC61D3A31"/>
+</associations>
+</Column>
+<Column name="ID_USERS" id="36243DC8-B6B5-43E8-AE34-6206214A22E2">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:39:54 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B062C427-85EE-9657-92AC-E2DB51F793D0" referredColumn="5D1B6EF1-CC4A-790E-FC51-9447743571FD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="960B11D9-022A-3785-61BB-A50618A77786" name="F_CAIXA_PK">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:29:47 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0C3BBE01-F1CC-5A06-96D1-1CB9ADC35874"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="475A242E-DF98-C250-387C-6BDFC60A30AC" name="F_CAIXA_D_USER_STORES_FK">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:38:28 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A432D51-5529-3D8C-07D5-A5D1518C47A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="241F676D-3A83-8EFB-3D80-253350A77EC2" name="F_CAIXA_D_USERS_FK">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:39:54 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="36243DC8-B6B5-43E8-AE34-6206214A22E2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

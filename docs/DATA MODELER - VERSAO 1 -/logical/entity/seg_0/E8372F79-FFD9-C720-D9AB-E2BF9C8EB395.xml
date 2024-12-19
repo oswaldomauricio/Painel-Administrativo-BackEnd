@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E8372F79-FFD9-C720-D9AB-E2BF9C8EB395" name="dimensao_USERS">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 18:54:40 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<engineerTo>
+<item key="4A7D6331-CADF-89DE-B43D-D230B0E6C9B4" value="true"/>
+<item key="21B1FE14-E551-A660-36AB-0CD3D994F143" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="9E57D4B6-82BC-558F-F931-5C1849AD1EE6">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 18:55:24 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<engineerTo>
+<item key="4A7D6331-CADF-89DE-B43D-D230B0E6C9B4" value="true"/>
+<item key="21B1FE14-E551-A660-36AB-0CD3D994F143" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D1DD79FB-71AF-787A-C004-AE9C38AC9560" name="dimensao_USERS PK">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 18:55:31 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<engineerTo>
+<item key="4A7D6331-CADF-89DE-B43D-D230B0E6C9B4" value="true"/>
+<item key="21B1FE14-E551-A660-36AB-0CD3D994F143" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>

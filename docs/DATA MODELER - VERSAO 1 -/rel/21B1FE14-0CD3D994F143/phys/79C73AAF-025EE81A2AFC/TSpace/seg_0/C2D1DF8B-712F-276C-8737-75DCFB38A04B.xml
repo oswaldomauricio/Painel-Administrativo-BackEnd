@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableSpaceOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableSpaceOraclev10g" name="DM" directorySegmentName="seg_0" id="C2D1DF8B-712F-276C-8737-75DCFB38A04B">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>ANALYTICS</sourceObjSchema>
+<sourceObjName>DM</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<emUniformSize>0</emUniformSize>
+<extentManagement>LOCAL</extentManagement>
+</TableSpaceOraclev10g>

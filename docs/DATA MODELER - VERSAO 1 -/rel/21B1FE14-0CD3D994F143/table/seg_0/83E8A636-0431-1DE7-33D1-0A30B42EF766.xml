@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="83E8A636-0431-1DE7-33D1-0A30B42EF766" schemaObject="E2D0561B-D54D-6B45-0920-BB25B5A0E858" name="D_USER_STORES">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>ANALYTICS</sourceObjSchema>
+<sourceObjName>LOJAS_USERS</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<ordsAlias>lojas_users</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="4B928B4D-7D64-6D74-5EDA-AAB13F617B8A">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>LOJAS_USERS</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,11,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>seq_lojas_users_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>TRG_LOJAS_USERS_AI</autoIncrementTriggerName>
+</Column>
+<Column name="LOJA" id="B786DF84-E060-288C-0EB6-5289AD46B561">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>LOJAS_USERS</sourceObjSchema>
+<sourceObjName>LOJA</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO_DE_ACESSO" id="E27A7DAB-0035-ECFC-66E4-2E43B48FB832">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>LOJAS_USERS</sourceObjSchema>
+<sourceObjName>TIPO_DE_ACESSO</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_USERS" id="9C6A9800-E65A-3BB1-0961-B1098D2E4CB0">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>LOJAS_USERS</sourceObjSchema>
+<sourceObjName>ID_USERS</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,11,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="76E80CAC-C4AE-F25F-50BE-EE8937DD064A" referredColumn="83E5EAB2-2EC5-D327-E76C-8362544F5B17"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="48FED781-C7F6-ED2D-739D-CFBE97AAB38E" schemaObject="E2D0561B-D54D-6B45-0920-BB25B5A0E858" name="LOJAS_USERS_PK">
+<sourceConnName>ANALYTICS</sourceConnName>
+<sourceObjSchema>ANALYTICS</sourceObjSchema>
+<sourceObjName>SYS_C00529032</sourceObjName>
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4B928B4D-7D64-6D74-5EDA-AAB13F617B8A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="015D6BD1-50CA-BE2C-B174-8583D744101B" name="FK_LOJAS_USERS_USERS">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C6A9800-E65A-3BB1-0961-B1098D2E4CB0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="D_USER_STORES" directorySegmentName="seg_0" id="83E8A636-0431-1DE7-33D1-0A30B42EF766">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:51 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<schemaObject>E2D0561B-D54D-6B45-0920-BB25B5A0E858</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F8279EBF-2ADE-B2DA-7CB4-9CC810C197B7</segment>
+<tableSpace>C2D1DF8B-712F-276C-8737-75DCFB38A04B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID" id="4B928B4D-7D64-6D74-5EDA-AAB13F617B8A">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<autoIncrementDDL>TRIGGER</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="ID_USERS" id="9C6A9800-E65A-3BB1-0961-B1098D2E4CB0">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LOJA" id="B786DF84-E060-288C-0EB6-5289AD46B561">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TIPO_DE_ACESSO" id="E27A7DAB-0035-ECFC-66E4-2E43B48FB832">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:52 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_LOJAS_USERS_USERS" id="015D6BD1-50CA-BE2C-B174-8583D744101B">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="LOJAS_USERS_PK" id="48FED781-C7F6-ED2D-739D-CFBE97AAB38E">
+<createdBy>oswaldo.adm</createdBy>
+<createdTime>2024-12-19 19:49:53 UTC</createdTime>
+<ownerDesignName>DATA MODELER - VERSAO 1 -</ownerDesignName>
+<schemaObject>E2D0561B-D54D-6B45-0920-BB25B5A0E858</schemaObject>
+<segment>83C0B8D9-7848-EA76-34E4-1960A5519BDC</segment>
+<tableSpace>C2D1DF8B-712F-276C-8737-75DCFB38A04B</tableSpace>
+<indexSegment>83C0B8D9-7848-EA76-34E4-1960A5519BDC</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>
