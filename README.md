@@ -12,10 +12,9 @@ Para o backend foi escolhido o Python com o framework Flask.
 
 Utilizei o Flask pydantic para mapeamento das rotas e metodos (pode ser conferido na rota abaixo.)
 
-\`\`\`sh
-
+```sh
 /apidoc/swagger#/  
-\`\`\`
+```
 
 Para o banco de dados foi usado o BD da Oracle e usei o SQLAlchemy para ORM.  
  
