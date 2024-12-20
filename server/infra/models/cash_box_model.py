@@ -17,10 +17,10 @@ class Cash_Box(Base):
     VALOR = Column(Numeric, nullable=True)
     STATUS = Column(Boolean, nullable=True)
     ID_USERS = Column(Integer, ForeignKey("D_USERS.ID"))
-    ID_STORE = Column(Integer, ForeignKey("D_USER_STORES"))
+    ID_STORES = Column(Integer, ForeignKey("D_USER_STORES"))
 
     def __repr__(self):
-        return f"[id={self.ID}, data={self.DATA}, num_doc='{self.NUM_DOC}', origem='{self.ORIGEM}', tipo_operacao='{self.TIPO_OPERACAO}', valor={self.VALOR}, status={self.STATUS}, id_users={self.ID_USERS}, id_store={self.ID_STORE}]"
+        return f"[id={self.ID}, data={self.DATA}, num_doc='{self.NUM_DOC}', origem='{self.ORIGEM}', tipo_operacao='{self.TIPO_OPERACAO}', valor={self.VALOR}, status={self.STATUS}, id_users={self.ID_USERS}, id_stores={self.ID_STORES}]"
 
     def to_dict(self):
         return {
@@ -32,5 +32,5 @@ class Cash_Box(Base):
             "valor": self.VALOR,
             "status": self.STATUS,
             "id_users": self.ID_USERS,
-            "id_store": self.ID_STORE
+            "id_stores": self.ID_STORES
         }
