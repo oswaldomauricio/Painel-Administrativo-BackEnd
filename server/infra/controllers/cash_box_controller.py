@@ -41,6 +41,7 @@ class CashBoxController:
 
         try:
             data = self.response_CashBox.select()
+            print('data', data)
             info_to_dict = [infos.to_dict() for infos in data]
 
             boxCash_return = [
@@ -48,9 +49,19 @@ class CashBoxController:
                 if boxCash.get('id_stores') == id_loja and boxCash.get('data') == date_operacao and boxCash.get('status') is True
             ]
 
+            current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
+            previous_date = current_date - timedelta(days=1)
+            previous_date_str = previous_date.strftime("%d/%m/%Y")
+
+            # Buscar registros para a data anterior
+            boxCash_previous_return = [
+                boxCash for boxCash in info_to_dict
+                if boxCash.get('id_stores') == id_loja and boxCash.get('data') == previous_date_str and boxCash.get('status') is True
+            ]
+
             if boxCash_return:
                 total_value = return_total_value(id_loja, date_operacao, boxCash_return)
-                previus_value = return_previus_value(id_loja, date_operacao, boxCash_return)
+                previus_value = return_total_value(id_loja, previous_date_str, boxCash_previous_return)
                 success_response = {
                     'Caixa': boxCash_return,
                     'Saldo do dia': total_value,
