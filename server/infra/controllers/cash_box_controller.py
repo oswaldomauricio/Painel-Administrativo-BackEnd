@@ -60,8 +60,8 @@ class CashBoxController:
             ]
 
             if boxCash_return:
-                total_value_day = return_total_value_day(id_loja, date_operacao, boxCash_return)
-                previus_value = return_total_value_day(id_loja, previous_date_str, boxCash_previous_return)
+                total_value_day = self.return_total_value_day(boxCash_return)
+                previus_value = self.return_total_value_day(boxCash_previous_return)
                 success_response = {
                     'Caixa': boxCash_return,
                     'Saldo': {
@@ -83,8 +83,7 @@ class CashBoxController:
             error_response = {"error": f"Ocorreu um erro: {str(e)}", 'status': 400}
             return jsonify(error_response)
 
-def return_total_value_day(id_loja, date_operacao, caixa_data):
-    if id_loja and date_operacao:
+    def return_total_value_day(self, caixa_data):
         total = 0.0
         try:
             for item in caixa_data:
@@ -101,4 +100,3 @@ def return_total_value_day(id_loja, date_operacao, caixa_data):
             return total
         except Exception as e:
             raise ValueError(f"Erro ao calcular o valor total: {str(e)}, 'status': 400")
-    return jsonify({'error': 'Não foi informado a loja e a data, verifique!', 'status': 400})
