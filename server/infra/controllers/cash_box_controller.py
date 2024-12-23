@@ -1,12 +1,10 @@
 import sys
-
+import os
 from flask import jsonify
 from models.cash_box_model import Cash_Box
 from configs.connection import DBconnection
-import os
-
+from decimal import Decimal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 
 class ResponseCashBox:
     def select(self):
@@ -32,14 +30,13 @@ class CashBoxController:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
-    def select_all_info_by_cashBox(self, id_loja, tipo_operacao):
+    def select_all_info_by_cashBox(self, id_loja, date_operacao):
         if not id_loja:
-            error_response = {"error": "O campo id_loja não foi informado."}
+            error_response = {"error": "O campo id_loja não foi informado.", 'status': 400}
             return jsonify(error_response)
 
-        if not tipo_operacao:
-            error_response = {
-                "error": "O campo tipo de operação não foi informado."}
+        if not date_operacao:
+            error_response = {"error": "O campo de data não foi informado.", 'status': 400}
             return jsonify(error_response)
 
         try:
@@ -48,17 +45,80 @@ class CashBoxController:
 
             boxCash_return = [
                 boxCash for boxCash in info_to_dict
-                if boxCash.get('id_stores') == id_loja and boxCash.get('tipo_operacao') == tipo_operacao
+                if boxCash.get('id_stores') == id_loja and boxCash.get('data') == date_operacao and boxCash.get('status') is True
             ]
 
             if boxCash_return:
-                success_response = {'Caixa': boxCash_return, 'status': 200}
+                total_value = return_total_value(id_loja, date_operacao, boxCash_return)
+                previus_value = return_previus_value(id_loja, date_operacao, boxCash_return)
+                success_response = {
+                    'Caixa': boxCash_return,
+                    'Saldo do dia': total_value,
+                    'Saldo do dia anterior': previus_value,
+                    'status': 200
+                }
                 return jsonify(success_response)
             else:
                 not_found_response = {
-                    'message': 'Nenhum caixa encontrado com os critérios fornecidos.', 'status': 404}
+                    'message': 'Nenhuma informação encontrada com os critérios fornecidos.',
+                    'status': 404
+                }
                 return jsonify(not_found_response)
 
         except Exception as e:
             error_response = {"error": f"Ocorreu um erro: {str(e)}"}
             return jsonify(error_response)
+
+def return_total_value(id_loja, date_operacao, caixa_data):
+    if id_loja and date_operacao:
+        total = 0.0
+        try:
+            for item in caixa_data:
+                tipo_operacao = item.get('tipo_operacao')
+                valor = item.get('valor', 0)
+
+                valor = float(valor) if isinstance(valor, Decimal) else valor
+
+                if tipo_operacao == 'ENTRADA':
+                    total += valor
+                elif tipo_operacao == 'SAIDA':
+                    total -= valor
+
+            return total
+        except Exception as e:
+            raise ValueError(f"Erro ao calcular o valor total: {str(e)}")
+    return jsonify({'error': 'Não foi informado a loja e a data, verifique!'})
+
+from datetime import datetime, timedelta
+
+def return_previus_value(id_loja, date_operacao, caixa_data):
+    if id_loja and date_operacao:
+        total = 0.0
+        try:
+            # Converter a data fornecida para um objeto datetime
+            current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
+            previous_date = current_date - timedelta(days=1)
+            previous_date_str = previous_date.strftime("%d/%m/%Y")
+
+            # Filtrar os registros para o dia anterior
+            caixa_previous_day = [
+                item for item in caixa_data
+                if item.get('id_stores') == id_loja and item.get('data') == previous_date_str
+            ]
+
+            # Calcular o valor total para o dia anterior
+            for item in caixa_previous_day:
+                tipo_operacao = item.get('tipo_operacao')
+                valor = item.get('valor', 0)
+
+                valor = float(valor) if isinstance(valor, Decimal) else valor
+
+                if tipo_operacao == 'ENTRADA':
+                    total += valor
+                elif tipo_operacao == 'SAIDA':
+                    total -= valor
+
+            return total
+        except Exception as e:
+            raise ValueError(f"Erro ao calcular o valor do dia anterior: {str(e)}")
+    return jsonify({'error': 'Não foi informado a loja e a data, verifique!'})
