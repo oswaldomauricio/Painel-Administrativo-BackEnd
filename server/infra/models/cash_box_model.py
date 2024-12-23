@@ -23,9 +23,10 @@ class Cash_Box(Base):
         return f"[id={self.ID}, data={self.DATA}, num_doc='{self.NUM_DOC}', origem='{self.ORIGEM}', tipo_operacao='{self.TIPO_OPERACAO}', valor={self.VALOR}, status={self.STATUS}, id_users={self.ID_USERS}, id_stores={self.ID_STORES}]"
 
     def to_dict(self):
+        formatted_date = self.DATA.strftime('%d/%m/%Y') if self.DATA else None
         return {
             "id": self.ID,
-            "data": self.DATA,
+            "data": formatted_date,
             "num_doc": self.NUM_DOC,
             "origem": self.ORIGEM,
             "tipo_operacao": self.TIPO_OPERACAO,
