@@ -7,15 +7,16 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+
 class ResponseCashBox:
     def select(self):
         with DBconnection() as db:
             select_data = db.session.query(Cash_Box).all()
             return select_data
 
-    def insert(self, data, num_doc, origem, tipo_operacao, valor, status, id_users, id_stores):
+    def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, id_stores):
         with DBconnection() as db:
-            insert_data = Cash_Box(DATA=data, NUM_DOC=num_doc, ORIGEM=origem, TIPO_OPERACAO=tipo_operacao,
+            insert_data = Cash_Box(ID=id, DATA=data, NUM_DOC=num_doc, ORIGEM=origem, TIPO_OPERACAO=tipo_operacao,
                                    VALOR=valor, STATUS=status, ID_USERS=id_users, ID_STORES=id_stores)
             db.session.add(insert_data)
             db.session.commit()
@@ -33,12 +34,10 @@ class CashBox_select_Controller:
 
     def select_all_info_by_cashBox(self, id_loja, date_operacao):
         if not id_loja:
-            error_response = {"error": "O campo id_loja não foi informado.", 'status': 400}
-            return jsonify(error_response)
+            return jsonify({"error": "O campo id_loja não foi informado.", 'status': 400})
 
         if not date_operacao:
-            error_response = {"error": "O campo de data não foi informado.", 'status': 400}
-            return jsonify(error_response)
+            return jsonify({"error": "O campo de data não foi informado.", 'status': 400})
 
         try:
             data = self.response_CashBox.select()
@@ -65,22 +64,22 @@ class CashBox_select_Controller:
                 success_response = {
                     'Caixa': boxCash_return,
                     'Saldo': {
-                    'Saldo do dia': total_value_day,
-                    'Saldo do dia anterior': previus_value,
-                    'Saldo total': total_value_day + previus_value
+                        'Saldo do dia': total_value_day,
+                        'Saldo do dia anterior': previus_value,
+                        'Saldo total': total_value_day + previus_value
                     },
                     'status': 200
                 }
                 return jsonify(success_response)
             else:
-                not_found_response = {
+                return jsonify({
                     'message': 'Nenhuma informação encontrada com os critérios fornecidos.',
                     'status': 404
-                }
-                return jsonify(not_found_response)
+                })
 
         except Exception as e:
-            error_response = {"error": f"Ocorreu um erro: {str(e)}", 'status': 400}
+            error_response = {
+                "error": f"Ocorreu um erro: {str(e)}", 'status': 400}
             return jsonify(error_response)
 
     def return_total_value_day(self, caixa_data):
@@ -99,4 +98,18 @@ class CashBox_select_Controller:
 
             return total
         except Exception as e:
-            raise ValueError(f"Erro ao calcular o valor total: {str(e)}, 'status': 400")
+            return jsonify({'error': f'Erro ao calcular o valor total: {str(e)}', 'status': 400})
+
+
+class CashBox_insert_Controller:
+    # pegar as informações da tabela f_caixa, criar uma função que calcule os valores de acordo com o status, e o tipo da operação.
+    def __init__(self, response_CashBox):
+        self.response_CashBox = response_CashBox
+
+    def insert_info_cashbox(self, id, id_loja, date_operacao, tipo_operacao, valor, status, numero_doc, origem, id_user):
+        try:
+            result = self.response_CashBox.insert(
+                id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, id_loja)
+            return jsonify({'result': 'Registro inserido com sucesso.', 'status': 200})
+        except Exception as e:
+            return jsonify({'error': f'Erro ao inserir os dados: {str(e)}', 'status': 400})
