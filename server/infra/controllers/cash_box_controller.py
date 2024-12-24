@@ -21,9 +21,9 @@ class ResponseCashBox:
             db.session.add(insert_data)
             db.session.commit()
 
-    def delete(self, id):
+    def update(self, id, status):
         with DBconnection() as db:
-            db.session.query(Cash_Box).filter(Cash_Box.ID == id).delete()
+            db.session.query(Cash_Box).filter(Cash_Box.ID == id).update({"STATUS": status})
             db.session.commit()
 
 
@@ -111,5 +111,17 @@ class CashBox_insert_Controller:
             result = self.response_CashBox.insert(
                 id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, id_loja)
             return jsonify({'result': 'Registro inserido com sucesso.', 'status': 200})
+        except Exception as e:
+            return jsonify({'error': f'Erro ao inserir os dados: {str(e)}', 'status': 400})
+
+
+class cashBox_delete_controller:
+    def __init__(self, response_CashBox):
+        self.response_CashBox = response_CashBox
+        
+    def delete_info_cashbox(self, id, status):
+        try:
+            self.response_CashBox.update(id, status)
+            return jsonify({'result': 'Registro excluido com sucesso.', 'status': 200})
         except Exception as e:
             return jsonify({'error': f'Erro ao inserir os dados: {str(e)}', 'status': 400})
