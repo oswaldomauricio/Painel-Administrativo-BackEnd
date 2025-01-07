@@ -28,7 +28,7 @@ class ResponseCashBox:
 
 
 class CashBox_select_Controller:
-    # pegar as informações da tabela f_caixa, criar uma função que calcule os valores de acordo com o status, e o tipo da operação.
+    # pegar as informações da tabela f_caixa, criar uma função que calcule os valores de acordo com o status, e o tipo da operação.0
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
