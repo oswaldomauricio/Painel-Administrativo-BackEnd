@@ -23,7 +23,8 @@ class ResponseCashBox:
 
     def update(self, id, status):
         with DBconnection() as db:
-            db.session.query(Cash_Box).filter(Cash_Box.ID == id).update({"STATUS": status})
+            db.session.query(Cash_Box).filter(
+                Cash_Box.ID == id).update({"STATUS": status})
             db.session.commit()
 
 
@@ -60,7 +61,8 @@ class CashBox_select_Controller:
 
             if boxCash_return:
                 total_value_day = self.return_total_value_day(boxCash_return)
-                previus_value = self.return_total_value_day(boxCash_previous_return)
+                previus_value = self.return_total_value_day(
+                    boxCash_previous_return)
                 success_response = {
                     'Caixa': boxCash_return,
                     'Saldo': {
@@ -110,15 +112,36 @@ class CashBox_insert_Controller:
         try:
             result = self.response_CashBox.insert(
                 id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, id_loja)
-            return jsonify({'result': 'Registro inserido com sucesso.', 'status': 200})
-        except Exception as e:
-            return jsonify({'error': f'Erro ao inserir os dados: {str(e)}', 'status': 400})
 
+            info_caixa = {
+                'id': id,
+                'date_operacao': date_operacao,
+                'numero_doc': numero_doc,
+                'origem': origem,
+                'tipo_operacao': tipo_operacao,
+                'valor': valor,
+                'status': status,
+                'id_user': id_user,
+                'id_loja': id_loja
+            }
+
+            json_info_caixa = jsonify(info_caixa)
+            return jsonify({
+                'result': 'Registro inserido com sucesso.',
+                'status': 200,
+                'caixas': info_caixa
+            })
+        except Exception as e:
+            return jsonify({
+                'error': f'Erro ao inserir os dados: {str(e)}',
+                'status': 400
+            })
+        
 
 class cashBox_delete_controller:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
-        
+
     def delete_info_cashbox(self, id, status):
         try:
             self.response_CashBox.update(id, status)
