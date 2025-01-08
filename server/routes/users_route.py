@@ -32,7 +32,7 @@ def get_users_by_name_and_pass():
     if get_user['name'] and get_user['password']:
         for i, users in enumerate(data_to_dict):
             if users['name'] == get_user['name'] and users['password'] == get_user['password']:
-                return jsonify(users), 200
+                return jsonify({'result': users, 'status': 200})
         else:
             return jsonify({'error': 'informação invalidas ou vazias, favor, verifique seu cadastro!'}), 400
     
@@ -42,18 +42,24 @@ def get_users_by_name_and_pass():
 def insert_user():
     try:
         new_user = request.get_json()
-        id = new_user.get('id')
+        # id = new_user.get('id')
         nome = new_user.get('name')
         password = new_user.get('password')
 
-        if not nome or not password or not id:
+        if not nome or not password:
             return jsonify({'error': 'Nome e senha são obrigatórios!'}), 400
 
         if id and nome and password:
-            response_users.insert(nome, password, id)
+            response_users.insert(nome, password)
+            users = {
+                'name': nome,
+                'password': password
+            }
             return jsonify({
-                'ok': f'registro inserido com sucesso [{id}], [{nome}], [{password}]'
-            }), 201
+                "usuario": users,
+                "result": "Registro incluido com sucesso.",
+                "status": 200
+            })
         return jsonify({"error": "Faltou alguma informação para criação do usuário"}), 400
 
     except Exception as e:
