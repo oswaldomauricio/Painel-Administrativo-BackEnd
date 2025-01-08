@@ -12,9 +12,9 @@ class UsersResponse:
             select_data = db.session.query(Users).all()
             return select_data
         
-    def insert(self, nome, password, id):
+    def insert(self, nome, password):
         with DBconnection() as db:
-            insert_data = Users(NAME = nome, PASSWORD = password, ID = id)
+            insert_data = Users(NAME = nome, PASSWORD = password)
             db.session.add(insert_data)
             db.session.commit()
 
