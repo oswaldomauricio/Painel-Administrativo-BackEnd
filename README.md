@@ -58,6 +58,17 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 #### Retorna se o usuario está autenticado para realizar login ou não, caso tenha as informações do usuario, ele poderá realizar o login.
 
+#### status 200 - bem sucedido irá retornar o seguinte json:
+
+```
+{
+    "id": 8,
+    "name": "nome do usuario",
+    "password": "senha do usuario",
+    "role": "regra de acesso do usuario"
+}
+```
+
 ```http
   POST /usuario
 ```
@@ -68,6 +79,19 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 | `password` | `string` | **Obrigatório**. Senha do usuario. |
 
 #### Insere um novo usuario.
+
+#### status 200 - bem sucedido irá retornar o seguinte json:
+
+```
+{
+    "result": "Registro incluido com sucesso.",
+    "status": 200,
+    "usuario": {
+        "name": "nome do usuario",
+        "password": "senha do usuario"
+    }
+}
+```
 
 
 ```http
@@ -136,6 +160,25 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 #### Insere uma nova operacao no caixa.
 
+#### status 200 - bem sucedido irá retornar o seguinte json:
+```
+{
+  "caixas": {
+      "date_operacao": "02/12/2024",
+      "id": 50,
+      "id_loja": 2,
+      "id_user": 29,
+      "numero_doc": 123232,
+      "origem": "testeinsert",
+      "status": 1,
+      "tipo_operacao": "ENTRADA",
+      "valor": 12
+  },
+  "result": "Registro inserido com sucesso.",
+  "status": 200
+}
+```
+
 
 ```http
   UPDATE /cashbox
@@ -147,4 +190,10 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 #### Endpoint que altera o valor do status de caixa para 0 , isso é como tivesse deletando o valor do caixa, porem, preferi fazer dessa maneira para ter os registros no banco caso algum seja excluido de forma incorreta.
 
-
+#### status 200 - bem sucedido irá retornar o seguinte json:
+```
+{
+    "result": "Registro excluido com sucesso.",
+    "status": 200
+}
+```
