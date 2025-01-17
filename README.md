@@ -139,7 +139,7 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `id_loja` | `number` | **Obrigatório**. id da loja que o usuario tem permitido. |
+| `loja` | `number` | **Obrigatório**. loja que o usuario tem permitido. |
 | `data` | `date (DD/MM/YYYY)` | **Obrigatório**. data de inserção dos valores. |
 
 #### Retorna os valores de entrada e saida dos caixas de acordo com a data e loja enviada
@@ -150,7 +150,7 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `id_loja` | `number` | **Obrigatório**. id da loja que o usuario tem permitido. |
+| `loja` | `number` | **Obrigatório**. loja que o usuario tem permitido. |
 | `data` | `date (DD/MM/YYYY)` | **Obrigatório**. data de inserção dos valores. |
 | `tipo_operacao` | `string` | **Obrigatório**. Deve ser enviado se é `ENTRADA` ou `SAIDA` apenas! |
 | `valor` | `number` | **Obrigatório**. valor da operação. |
@@ -166,7 +166,7 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
   "caixas": {
       "date_operacao": "02/12/2024",
       "id": 50,
-      "id_loja": 2,
+      "loja": 201,
       "id_user": 29,
       "numero_doc": 123232,
       "origem": "testeinsert",
