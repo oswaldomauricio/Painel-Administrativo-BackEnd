@@ -14,7 +14,7 @@ response_store_users = ResponseStoreUser()
 store_users_controller = StoreUsersController(response_users, response_store_users)
 
 # Rota para obter usuário e lojas
-@store_users_bp.route('/usuario/lojas', methods=['GET'])
+@store_users_bp.route('/usuario/lojas', methods=['POST'])
 def get_store_by_user():
     try:
         req_user = request.get_json()

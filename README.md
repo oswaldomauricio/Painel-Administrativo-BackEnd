@@ -134,7 +134,7 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 ## endpoint para as entradas e saidas de caixa da loja.
 
 ```http
-  GET /cashbox
+  POST /cashbox/relatorio
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |

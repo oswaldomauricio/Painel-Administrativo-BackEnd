@@ -18,7 +18,7 @@ CashBox_insert = CashBox_insert_Controller(response_cashBox)
 CashBox_delete = cashBox_delete_controller(response_cashBox)
 
 # Rota GET por Nome e Senha
-@cashbox_bp.route('/cashbox', methods=['GET'])
+@cashbox_bp.route('/cashbox/relatorio', methods=['POST'])
 def get_cashbox_by_store_and_tipo_operacao():
     req_cashbox = request.get_json()
 

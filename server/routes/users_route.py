@@ -10,7 +10,7 @@ spec = FlaskPydanticSpec('Flask', titulo='API - NORTE AUTO PEÇAS')
 spec.register(users_bp)
 
 # Rota GET por Nome e Senha
-@users_bp.route('/usuario', methods=['GET'])
+@users_bp.route('/usuario', methods=['POST'])
 def get_users_by_name_and_pass():
     req_user = request.get_json()
 

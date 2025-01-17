@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-
 class ResponseCashBox:
     def select(self):
         with DBconnection() as db:
@@ -27,9 +26,7 @@ class ResponseCashBox:
                 Cash_Box.ID == id).update({"STATUS": status})
             db.session.commit()
 
-
 class CashBox_select_Controller:
-    # pegar as informações da tabela f_caixa, criar uma função que calcule os valores de acordo com o status, e o tipo da operação.0
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
@@ -53,29 +50,29 @@ class CashBox_select_Controller:
             previous_date = current_date - timedelta(days=1)
             previous_date_str = previous_date.strftime("%d/%m/%Y")
 
-            # Buscar registros para a data anterior
             boxCash_previous_return = [
                 boxCash for boxCash in info_to_dict
                 if boxCash.get('id_stores') == id_loja and boxCash.get('data') == previous_date_str and boxCash.get('status') is True
             ]
 
             if boxCash_return:
-                total_value_day = self.return_total_value_day(boxCash_return)
-                previus_value = self.return_total_value_day(
-                    boxCash_previous_return)
+                total_value_day, total_entrada, total_saida = self.return_total_value_day(boxCash_return)
+                previus_value = self.return_total_value_day(boxCash_previous_return)[0]
                 success_response = {
                     'Caixa': boxCash_return,
                     'Saldo': {
                         'Saldo do dia': total_value_day,
                         'Saldo do dia anterior': previus_value,
-                        'Saldo total': total_value_day + previus_value
+                        'Saldo total': total_value_day + previus_value,
+                        'entrada': total_entrada,
+                        'saida': total_saida
                     },
                     'status': 200
                 }
                 return jsonify(success_response)
             else:
                 return jsonify({
-                    'message': 'Nenhuma informação encontrada com os critérios fornecidos.',
+                    'error': 'Nenhuma informação encontrada com os critérios fornecidos.',
                     'status': 404
                 })
 
@@ -86,6 +83,8 @@ class CashBox_select_Controller:
 
     def return_total_value_day(self, caixa_data):
         total = 0.0
+        total_entrada = 0.0
+        total_saida = 0.0
         try:
             for item in caixa_data:
                 tipo_operacao = item.get('tipo_operacao')
@@ -95,16 +94,16 @@ class CashBox_select_Controller:
 
                 if tipo_operacao == 'ENTRADA':
                     total += valor
+                    total_entrada += valor
                 elif tipo_operacao == 'SAIDA':
                     total -= valor
+                    total_saida += valor
 
-            return total
+            return total, total_entrada, total_saida
         except Exception as e:
             return jsonify({'error': f'Erro ao calcular o valor total: {str(e)}', 'status': 400})
 
-
 class CashBox_insert_Controller:
-    # pegar as informações da tabela f_caixa, criar uma função que calcule os valores de acordo com o status, e o tipo da operação.
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
@@ -136,7 +135,6 @@ class CashBox_insert_Controller:
                 'error': f'Erro ao inserir os dados: {str(e)}',
                 'status': 400
             })
-        
 
 class cashBox_delete_controller:
     def __init__(self, response_CashBox):
