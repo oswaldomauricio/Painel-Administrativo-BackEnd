@@ -22,18 +22,19 @@ CashBox_delete = cashBox_delete_controller(response_cashBox)
 def get_cashbox_by_store_and_tipo_operacao():
     req_cashbox = request.get_json()
 
-    id_loja = req_cashbox.get('id_loja')
+    loja = req_cashbox.get('loja')
     date_operacao = req_cashbox.get('data')
 
-    if not id_loja and not date_operacao:
+    if not loja and not date_operacao:
         return jsonify({'error': 'loja e a data não foram informados, favor verificar!'}), 400
 
     get_info = {
-        "id_loja": id_loja,
+        "loja": loja,
         "date": date_operacao
     }
+    print(get_info)
 
-    result = CashBox_select.select_all_info_by_cashBox(get_info['id_loja'], get_info['date'])
+    result = CashBox_select.select_all_info_by_cashBox(get_info['loja'], get_info['date'])
     return result.get_json()
 
 
@@ -41,7 +42,7 @@ def get_cashbox_by_store_and_tipo_operacao():
 def insert_cashbox():
     req_cashbox = request.get_json()
 
-    id_loja = req_cashbox.get('id_loja')
+    loja = req_cashbox.get('loja')
     id_user = req_cashbox.get('id_user')
     date_operacao = req_cashbox.get('data')
     tipo_operacao = req_cashbox.get('tipo_operacao')
@@ -50,11 +51,11 @@ def insert_cashbox():
     origem = req_cashbox.get('origem')
 
 
-    if not id_loja or not id_user or not date_operacao or not valor or not tipo_operacao:
+    if not loja or not id_user or not date_operacao or not valor or not tipo_operacao:
         return jsonify({'error': 'ah informações faltando, favor, verificar!'}), 400
 
     get_info = {
-        "id_loja": id_loja,
+        "loja": loja,
         "date": date_operacao,
         "tipo_operacao": tipo_operacao,
         "valor": valor,
@@ -63,13 +64,15 @@ def insert_cashbox():
         "id_user": id_user,
         "status": 1
     }
+    print(get_info)
 
     select_id = CashBox_select.response_CashBox.select()
     ids = [item.ID for item in select_id]
     max_id = max(ids) #aqui eu to pegando o id maximo da tabela para poder fazer o insert pois o oracle tava dando ele como null
     max_id +=1
 
-    result = CashBox_insert.insert_info_cashbox(max_id+1, get_info['id_loja'], get_info['date'], get_info['tipo_operacao'], get_info['valor'], get_info['status'], get_info['numero_doc'], get_info['origem'], get_info['id_user'])
+    result = CashBox_insert.insert_info_cashbox(max_id+1, get_info['loja'], get_info['date'], get_info['tipo_operacao'], get_info['valor'], get_info['status'], get_info['numero_doc'], get_info['origem'], get_info['id_user'])
+    
     
     return result.get_json()
 

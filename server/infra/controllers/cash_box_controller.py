@@ -13,10 +13,10 @@ class ResponseCashBox:
             select_data = db.session.query(Cash_Box).all()
             return select_data
 
-    def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, id_stores):
+    def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, loja):
         with DBconnection() as db:
             insert_data = Cash_Box(ID=id, DATA=data, NUM_DOC=num_doc, ORIGEM=origem, TIPO_OPERACAO=tipo_operacao,
-                                   VALOR=valor, STATUS=status, ID_USERS=id_users, ID_STORES=id_stores)
+                                   VALOR=valor, STATUS=status, ID_USERS=id_users, STORE=loja)
             db.session.add(insert_data)
             db.session.commit()
 
@@ -30,9 +30,9 @@ class CashBox_select_Controller:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
-    def select_all_info_by_cashBox(self, id_loja, date_operacao):
-        if not id_loja:
-            return jsonify({"error": "O campo id_loja não foi informado.", 'status': 400})
+    def select_all_info_by_cashBox(self, loja, date_operacao):
+        if not loja:
+            return jsonify({"error": "O campo loja não foi informado.", 'status': 400})
 
         if not date_operacao:
             return jsonify({"error": "O campo de data não foi informado.", 'status': 400})
@@ -43,7 +43,7 @@ class CashBox_select_Controller:
 
             boxCash_return = [
                 boxCash for boxCash in info_to_dict
-                if boxCash.get('id_stores') == id_loja and boxCash.get('data') == date_operacao and boxCash.get('status') is True
+                if boxCash.get('loja') == loja and boxCash.get('data') == date_operacao and boxCash.get('status') is True
             ]
 
             current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
@@ -52,7 +52,7 @@ class CashBox_select_Controller:
 
             boxCash_previous_return = [
                 boxCash for boxCash in info_to_dict
-                if boxCash.get('id_stores') == id_loja and boxCash.get('data') == previous_date_str and boxCash.get('status') is True
+                if boxCash.get('loja') == loja and boxCash.get('data') == previous_date_str and boxCash.get('status') is True
             ]
 
             if boxCash_return:
@@ -107,10 +107,10 @@ class CashBox_insert_Controller:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
-    def insert_info_cashbox(self, id, id_loja, date_operacao, tipo_operacao, valor, status, numero_doc, origem, id_user):
+    def insert_info_cashbox(self, id, loja, date_operacao, tipo_operacao, valor, status, numero_doc, origem, id_user):
         try:
             result = self.response_CashBox.insert(
-                id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, id_loja)
+                id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, loja)
 
             info_caixa = {
                 'id': id,
@@ -121,7 +121,7 @@ class CashBox_insert_Controller:
                 'valor': valor,
                 'status': status,
                 'id_user': id_user,
-                'id_loja': id_loja
+                'loja': loja
             }
 
             json_info_caixa = jsonify(info_caixa)
