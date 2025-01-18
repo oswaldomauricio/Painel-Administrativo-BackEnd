@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+
 class ResponseCashBox:
     def select(self):
         with DBconnection() as db:
@@ -26,6 +27,7 @@ class ResponseCashBox:
                 Cash_Box.ID == id).update({"STATUS": status})
             db.session.commit()
 
+
 class CashBox_select_Controller:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
@@ -38,70 +40,77 @@ class CashBox_select_Controller:
             return jsonify({"error": "O campo de data não foi informado.", 'status': 400})
 
         try:
+            # Converter data de string para datetime
+            current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
             data = self.response_CashBox.select()
             info_to_dict = [infos.to_dict() for infos in data]
 
-            boxCash_return = [
-                boxCash for boxCash in info_to_dict
-                if boxCash.get('loja') == loja and boxCash.get('data') == date_operacao and boxCash.get('status') is True
+            # Filtrar registros por loja
+            records_for_store = [
+                boxCash for boxCash in info_to_dict if boxCash.get('loja') == loja and boxCash.get('status') == 1
             ]
 
-            current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
-            previous_date = current_date - timedelta(days=1)
-            previous_date_str = previous_date.strftime("%d/%m/%Y")
 
-            boxCash_previous_return = [
-                boxCash for boxCash in info_to_dict
-                if boxCash.get('loja') == loja and boxCash.get('data') == previous_date_str and boxCash.get('status') is True
-            ]
-
-            if boxCash_return:
-                total_value_day, total_entrada, total_saida = self.return_total_value_day(boxCash_return)
-                previus_value = self.return_total_value_day(boxCash_previous_return)[0]
-                success_response = {
-                    'Caixa': boxCash_return,
-                    'Saldo': {
-                        'Saldo do dia': total_value_day,
-                        'Saldo do dia anterior': previus_value,
-                        'Saldo total': total_value_day + previus_value,
-                        'entrada': total_entrada,
-                        'saida': total_saida
-                    },
-                    'status': 200
-                }
-                return jsonify(success_response)
-            else:
+            if not records_for_store:
                 return jsonify({
-                    'error': 'Nenhuma informação encontrada com os critérios fornecidos.',
-                    'status': 404
+                    "error": "Nenhum registro encontrado para a loja especificada.",
+                    "status": 404
                 })
+
+            # Ordenar registros por data para facilitar a busca
+            records_for_store.sort(key=lambda x: datetime.strptime(x.get('data'), "%d/%m/%Y"))
+
+            # Inicializar variáveis de saldo
+            saldo_total = 0.0
+            total_entrada = 0.0
+            total_saida = 0.0
+
+            boxCash_return = []
+            for record in records_for_store:
+                record_date = datetime.strptime(record.get('data'), "%d/%m/%Y")
+
+                if record_date <= current_date:
+                    # Atualizar saldo total com base em todos os registros até a data atual
+                    tipo_operacao = record.get('tipo_operacao')
+                    valor = record.get('valor', 0)
+                    valor = float(valor) if isinstance(valor, Decimal) else valor
+
+                    if tipo_operacao == 'ENTRADA':
+                        saldo_total += valor
+                    elif tipo_operacao == 'SAIDA':
+                        saldo_total -= valor
+
+                if record_date == current_date:
+                    # Calcular apenas os valores de entrada e saída do dia atual
+                    tipo_operacao = record.get('tipo_operacao')
+                    valor = record.get('valor', 0)
+                    valor = float(valor) if isinstance(valor, Decimal) else valor
+
+                    if tipo_operacao == 'ENTRADA':
+                        total_entrada += valor
+                    elif tipo_operacao == 'SAIDA':
+                        total_saida += valor
+
+                    boxCash_return.append(record)
+
+            # Resposta final
+            success_response = {
+                'Caixa': boxCash_return,
+                'Saldo': {
+                    'Saldo total': saldo_total,
+                    'entrada': total_entrada,
+                    'saida': total_saida
+                },
+                'status': 200
+            }
+            return jsonify(success_response)
 
         except Exception as e:
             error_response = {
                 "error": f"Ocorreu um erro: {str(e)}", 'status': 400}
             return jsonify(error_response)
 
-    def return_total_value_day(self, caixa_data):
-        total = 0.0
-        total_entrada = 0.0
-        total_saida = 0.0
-        try:
-            for item in caixa_data:
-                tipo_operacao = item.get('tipo_operacao')
-                valor = item.get('valor', 0)
 
-                valor = float(valor) if isinstance(valor, Decimal) else valor
-
-                if tipo_operacao == 'ENTRADA':
-                    total += valor
-                    total_entrada += valor
-                elif tipo_operacao == 'SAIDA':
-                    total -= valor
-                    total_saida += valor
-
-            return total, total_entrada, total_saida
-        except Exception as e:
-            return jsonify({'error': f'Erro ao calcular o valor total: {str(e)}', 'status': 400})
 
 class CashBox_insert_Controller:
     def __init__(self, response_CashBox):
@@ -135,6 +144,7 @@ class CashBox_insert_Controller:
                 'error': f'Erro ao inserir os dados: {str(e)}',
                 'status': 400
             })
+
 
 class cashBox_delete_controller:
     def __init__(self, response_CashBox):
