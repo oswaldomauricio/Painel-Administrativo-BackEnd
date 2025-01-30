@@ -23,5 +23,5 @@ def get_meta_loja():
     elif META_MENSAL:
         return jsonify({'meta_mensal': META_MENSAL, 'status': '200'  }), 200
     elif META_SEMANAL:
-        return jsonify({'meta_semanal': META_SEMANAL, 'status': '400'  }), 200
+        return jsonify({'meta_semanal': META_SEMANAL, 'status': '200'  }), 200
     return jsonify({'error': 'Não existem metas para essa loja', 'status': '400' }), 400
