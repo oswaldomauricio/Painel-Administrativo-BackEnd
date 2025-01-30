@@ -32,7 +32,6 @@ def get_cashbox_by_store_and_tipo_operacao():
         "loja": loja,
         "date": date_operacao
     }
-    print(get_info)
 
     result = CashBox_select.select_all_info_by_cashBox(get_info['loja'], get_info['date'])
     return result.get_json()
@@ -64,7 +63,6 @@ def insert_cashbox():
         "id_user": id_user,
         "status": 1
     }
-    print(get_info)
 
     select_id = CashBox_select.response_CashBox.select()
     ids = [item.ID for item in select_id]
