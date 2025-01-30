@@ -12,7 +12,7 @@ def get_meta_loja():
     data_meta = data.get('data') 
 
     if not loja or not data_meta:
-        return jsonify({'error': 'Campos "loja" e "data" são obrigatórios!'}), 400
+        return jsonify({'error': 'Campos "loja" e "data" são obrigatórios!', 'status': '400'}), 400
 
     # Chama o método correto do controller (ex: buscar por loja e data)
     META_MENSAL = MetaLoja.buscar_metas_lojas_mes(loja, data_meta)
