@@ -50,7 +50,6 @@ class CashBox_select_Controller:
                 boxCash for boxCash in info_to_dict if boxCash.get('loja') == loja and boxCash.get('status') == 1
             ]
 
-
             if not records_for_store:
                 return jsonify({
                     "error": "Nenhum registro encontrado para a loja especificada.",
@@ -58,7 +57,8 @@ class CashBox_select_Controller:
                 })
 
             # Ordenar registros por data para facilitar a busca
-            records_for_store.sort(key=lambda x: datetime.strptime(x.get('data'), "%d/%m/%Y"))
+            records_for_store.sort(
+                key=lambda x: datetime.strptime(x.get('data'), "%d/%m/%Y"))
 
             # Inicializar variáveis de saldo
             saldo_total = 0.0
@@ -73,7 +73,8 @@ class CashBox_select_Controller:
                     # Atualizar saldo total com base em todos os registros até a data atual
                     tipo_operacao = record.get('tipo_operacao')
                     valor = record.get('valor', 0)
-                    valor = float(valor) if isinstance(valor, Decimal) else valor
+                    valor = float(valor) if isinstance(
+                        valor, Decimal) else valor
 
                     if tipo_operacao == 'ENTRADA':
                         saldo_total += valor
@@ -84,7 +85,8 @@ class CashBox_select_Controller:
                     # Calcular apenas os valores de entrada e saída do dia atual
                     tipo_operacao = record.get('tipo_operacao')
                     valor = record.get('valor', 0)
-                    valor = float(valor) if isinstance(valor, Decimal) else valor
+                    valor = float(valor) if isinstance(
+                        valor, Decimal) else valor
 
                     if tipo_operacao == 'ENTRADA':
                         total_entrada += valor
@@ -109,6 +111,66 @@ class CashBox_select_Controller:
             error_response = {
                 "error": f"Ocorreu um erro: {str(e)}", 'status': 400}
             return jsonify(error_response)
+
+    def select_all_info_per_period(self, loja, data_inicial, data_final):
+        if not loja:
+            return jsonify({"error": "O campo loja não foi informado.", 'status': 400})
+
+        if not data_inicial or not data_final:
+            return jsonify({"error": "Os campos de data não foram informados.", 'status': 400})
+
+        try:
+            date_start = datetime.strptime(data_inicial, "%d/%m/%Y")
+            date_end = datetime.strptime(data_final, "%d/%m/%Y")
+
+            if date_start > date_end:
+                return jsonify({"error": "A data inicial não pode ser maior que a data final.", 'status': 400})
+        
+            select_dados = self.response_CashBox.select()
+            select_dados_to_dict = [infos.to_dict() for infos in select_dados]
+
+            records_for_store = [
+                boxCash for boxCash in select_dados_to_dict
+                if boxCash.get('loja') == loja and boxCash.get('status') == 1
+            ]
+
+            if not records_for_store:
+                return jsonify({
+                    "error": "Nenhum registro encontrado para a loja especificada.",
+                    "status": 404
+                })
+
+            filtered_records = [
+                record for record in records_for_store
+                if date_start <= datetime.strptime(record.get('data'), "%d/%m/%Y") <= date_end
+            ]
+
+            filtered_records.sort(key=lambda record: datetime.strptime(record.get('data'), "%d/%m/%Y"))
+
+            saldo_total = 0.0
+            total_entrada = 0.0
+            total_saida = 0.0
+
+            for record in filtered_records:
+                valor = float(record.get('valor', 0)) if isinstance(record.get('valor'), Decimal) else record.get('valor')
+                if record.get('tipo_operacao') == 'ENTRADA':
+                    total_entrada += valor
+                    saldo_total += valor
+                elif record.get('tipo_operacao') == 'SAIDA':
+                    total_saida += valor
+                    saldo_total -= valor
+
+            return jsonify({
+                'Caixa': filtered_records,
+                'Saldo': {
+                    'Saldo total': saldo_total,
+                    'entrada': total_entrada,
+                    'saida': total_saida
+                },
+                'status': 200
+            })
+        except Exception as e:
+            return jsonify({"error": f"Ocorreu um erro: {str(e)}", 'status': 400})
 
 
 

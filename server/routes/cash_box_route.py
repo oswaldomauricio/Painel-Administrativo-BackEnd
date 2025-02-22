@@ -17,7 +17,7 @@ CashBox_select = CashBox_select_Controller(response_cashBox)
 CashBox_insert = CashBox_insert_Controller(response_cashBox)
 CashBox_delete = cashBox_delete_controller(response_cashBox)
 
-# Rota GET por Nome e Senha
+# Relatorio de caixa por data fixa e loja.
 @cashbox_bp.route('/cashbox/relatorio', methods=['POST'])
 def get_cashbox_by_store_and_tipo_operacao():
     req_cashbox = request.get_json()
@@ -36,7 +36,31 @@ def get_cashbox_by_store_and_tipo_operacao():
     result = CashBox_select.select_all_info_by_cashBox(get_info['loja'], get_info['date'])
     return result.get_json()
 
+# Relatorio de caixa por periodo selecionado.
+@cashbox_bp.route('/cashbox/relatorio/periodo', methods=['POST'])
+def get_cashbox_per_period_and_store():
+    req_cashbox = request.get_json()
 
+    loja = req_cashbox.get('loja')
+    data_inicial = req_cashbox.get('data_inicial')
+    data_final = req_cashbox.get('data_final')
+
+    if not loja:
+        return jsonify({'error': 'loja e a data não foram informados, favor verificar!'}), 400
+    
+    if not data_inicial and not data_final:
+        return jsonify({'error': 'loja e a data não foram informados, favor verificar!'}), 400
+
+    get_info = {
+        "loja": loja,
+        "data_inicial": data_inicial,
+        "data_final": data_final
+    }
+
+    result = CashBox_select.select_all_info_per_period(get_info['loja'], get_info['data_inicial'], get_info['data_final'])
+    return result.get_json()
+
+# Inserir valor no relatorio de caixa.
 @cashbox_bp.route('/cashbox', methods=['POST'])
 def insert_cashbox():
     req_cashbox = request.get_json()
@@ -74,6 +98,7 @@ def insert_cashbox():
     
     return result.get_json()
 
+# alterar status do valor para ser excluido.
 @cashbox_bp.route('/cashbox', methods=['PUT'])
 def delete_cashbox():
     """
