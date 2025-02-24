@@ -18,6 +18,7 @@ class Cash_Box(Base):
     STATUS = Column(Boolean, nullable=True)
     ID_USERS = Column(Integer, ForeignKey("D_USERS.ID"))
     STORE = Column(Integer, nullable=True)
+    TIPO = Column(String, nullable=False)
 
     @classmethod
     def parse_date(cls, date_str):
@@ -43,7 +44,7 @@ class Cash_Box(Base):
         return f"[id={self.ID}, data={self.DATA}, num_doc='{self.NUM_DOC}', " \
                f"origem='{self.ORIGEM}', tipo_operacao='{self.TIPO_OPERACAO}', " \
                f"valor={self.VALOR}, status={self.STATUS}, id_users={self.ID_USERS}, " \
-               f"loja='{self.STORE}']"
+               f"loja='{self.STORE}'], tipo={self.TIPO}"
 
     def to_dict(self):
         formatted_date = self.DATA.strftime('%d/%m/%Y') if self.DATA else None
@@ -56,5 +57,6 @@ class Cash_Box(Base):
             "valor": self.VALOR,
             "status": self.STATUS,
             "id_users": self.ID_USERS,
-            "loja": self.STORE
+            "loja": self.STORE,
+            "tipo": self.TIPO
         }
