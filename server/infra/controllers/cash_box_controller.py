@@ -13,6 +13,10 @@ class ResponseCashBox:
         with DBconnection() as db:
             select_data = db.session.query(Cash_Box).all()
             return select_data
+    
+    def get_caixa_by_id(id):
+        with DBconnection() as db:
+            return db.session.query(Cash_Box).filter_by(ID=id).first()
 
     def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, loja, tipo):
         with DBconnection() as db:

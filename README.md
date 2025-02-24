@@ -254,6 +254,7 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `id` | `number` | **Obrigatório**. id do caixa (obs: esse id não é do usuario e nem da loja, é o id da inserção do caixa.) |
+| `role` | `string` | **Obrigatório**. Regra do usuário (passada pelo usuario logado no front) |
 
 #### Endpoint que altera o valor do status de caixa para 0 , isso é como tivesse deletando o valor do caixa, porem, preferi fazer dessa maneira para ter os registros no banco caso algum seja excluido de forma incorreta.
 
@@ -262,5 +263,13 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 {
     "result": "Registro excluido com sucesso.",
     "status": 200
+}
+```
+
+#### status 403 - Caso o usuário não tenha permissão, ele so poderá excluir no dia que fez a inserção.0
+```
+{
+    "error": "Só é possível excluir registros no mesmo dia da inserção!",
+    "status": 403
 }
 ```

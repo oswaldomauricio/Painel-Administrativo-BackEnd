@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from datetime import datetime
 from infra.controllers.cash_box_controller import ResponseCashBox
 from infra.controllers.cash_box_controller import CashBox_select_Controller
 from infra.controllers.cash_box_controller import CashBox_insert_Controller
@@ -104,19 +105,39 @@ def insert_cashbox():
 @cashbox_bp.route('/cashbox', methods=['PUT'])
 def delete_cashbox():
     """
-    esse metodo não exclui o registro do banco, apenas altera o valor do status para 0 e a funcao para calcular o saldo ignora os que tem 0 no status.
-    isso serve para que tenha registro dos itens que foram excluidos!
+    Esse método não exclui o registro do banco, apenas altera o valor do status para 0.
+    A função que calcula o saldo ignora registros com status 0.
+    Isso permite manter um histórico dos itens excluídos.
     """
+
     req_cashbox = request.get_json()
 
     id = req_cashbox.get('id')
-    if not id:
-        return jsonify({'error': 'não foi localizado o caixa inserido, favor verifique!'}), 400
+    user_role = req_cashbox.get('role')  # Cargo do usuário (exemplo: "ADMIN" ou "USER")
 
-    get_info = {
-        "id": id,
-        "status": 0
-    }
+    if not id or not user_role:
+        return jsonify({'error': 'Informações incompletas, favor verificar!'}), 400
 
-    result = CashBox_delete.delete_info_cashbox(get_info['id'], get_info['status'])
+    # Buscar informações do caixa para validar a data da inserção e o usuário original
+    cashbox_record = ResponseCashBox.get_caixa_by_id(id)
+
+    print(cashbox_record)
+
+    if not cashbox_record:
+        return jsonify({'error': 'Registro não encontrado!'}), 404
+
+    data_insercao = cashbox_record.DATA 
+    data_atual = datetime.today().date()
+
+    # Regra: ADMIN pode alterar status a qualquer momento
+    if user_role == "ADMIN":
+        status = 0
+    else:
+        # Se não for ADMIN, só pode alterar se for o mesmo usuário e no mesmo dia
+        if data_insercao != data_atual:
+            return jsonify({'error': 'Só é possível excluir registros no mesmo dia da inserção!'}), 403
+
+        status = 0  # Permite alteração do status
+
+    result = CashBox_delete.delete_info_cashbox(id, status)
     return result.get_json()
