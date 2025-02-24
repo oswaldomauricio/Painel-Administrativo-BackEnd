@@ -4,7 +4,7 @@ from infra.controllers.cash_box_controller import CashBox_select_Controller
 from infra.controllers.cash_box_controller import CashBox_insert_Controller
 from infra.controllers.cash_box_controller import cashBox_delete_controller
 from infra.controllers.cash_box_controller import ResponseCashBox
-from flask_pydantic_spec import FlaskPydanticSpec # type: ignore # Cria um endpoint chamado /doc/swagger que mostra os endpoints que tenho na minha aplicação.
+from flask_pydantic_spec import FlaskPydanticSpec
 cashbox_bp = Blueprint('cash box', __name__)
 
 spec = FlaskPydanticSpec('Flask', titulo='API - NORTE AUTO PEÇAS')
@@ -72,6 +72,7 @@ def insert_cashbox():
     valor = req_cashbox.get('valor')
     numero_doc = req_cashbox.get('numero_doc')
     origem = req_cashbox.get('origem')
+    tipo = req_cashbox.get('tipo')
 
 
     if not loja or not id_user or not date_operacao or not valor or not tipo_operacao:
@@ -85,7 +86,8 @@ def insert_cashbox():
         "numero_doc": numero_doc,
         "origem": origem,
         "id_user": id_user,
-        "status": 1
+        "status": 1,
+        "tipo": tipo
     }
 
     select_id = CashBox_select.response_CashBox.select()
@@ -93,7 +95,7 @@ def insert_cashbox():
     max_id = max(ids) #aqui eu to pegando o id maximo da tabela para poder fazer o insert pois o oracle tava dando ele como null
     max_id +=1
 
-    result = CashBox_insert.insert_info_cashbox(max_id+1, get_info['loja'], get_info['date'], get_info['tipo_operacao'], get_info['valor'], get_info['status'], get_info['numero_doc'], get_info['origem'], get_info['id_user'])
+    result = CashBox_insert.insert_info_cashbox(max_id+1, get_info['loja'], get_info['date'], get_info['tipo_operacao'], get_info['valor'], get_info['status'], get_info['numero_doc'], get_info['origem'], get_info['id_user'], get_info['tipo'])
     
     
     return result.get_json()
