@@ -13,11 +13,15 @@ class ResponseCashBox:
         with DBconnection() as db:
             select_data = db.session.query(Cash_Box).all()
             return select_data
+    
+    def get_caixa_by_id(id):
+        with DBconnection() as db:
+            return db.session.query(Cash_Box).filter_by(ID=id).first()
 
-    def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, loja):
+    def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, loja, tipo):
         with DBconnection() as db:
             insert_data = Cash_Box(ID=id, DATA=data, NUM_DOC=num_doc, ORIGEM=origem, TIPO_OPERACAO=tipo_operacao,
-                                   VALOR=valor, STATUS=status, ID_USERS=id_users, STORE=loja)
+                                   VALOR=valor, STATUS=status, ID_USERS=id_users, STORE=loja, TIPO=tipo)
             db.session.add(insert_data)
             db.session.commit()
 
@@ -178,10 +182,10 @@ class CashBox_insert_Controller:
     def __init__(self, response_CashBox):
         self.response_CashBox = response_CashBox
 
-    def insert_info_cashbox(self, id, loja, date_operacao, tipo_operacao, valor, status, numero_doc, origem, id_user):
+    def insert_info_cashbox(self, id, loja, date_operacao, tipo_operacao, valor, status, numero_doc, origem, id_user, tipo):
         try:
             result = self.response_CashBox.insert(
-                id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, loja)
+                id, date_operacao, numero_doc, origem, tipo_operacao, valor, status, id_user, loja, tipo)
 
             info_caixa = {
                 'id': id,
@@ -192,7 +196,8 @@ class CashBox_insert_Controller:
                 'valor': valor,
                 'status': status,
                 'id_user': id_user,
-                'loja': loja
+                'loja': loja,
+                'tipo': tipo
             }
 
             json_info_caixa = jsonify(info_caixa)
