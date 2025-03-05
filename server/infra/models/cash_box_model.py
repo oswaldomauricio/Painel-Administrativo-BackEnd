@@ -60,3 +60,21 @@ class Cash_Box(Base):
             "loja": self.STORE,
             "tipo": self.TIPO
         }
+    
+
+
+
+class Fundo_de_caixa(Base):
+    __tablename__ = 'd_fundo_caixa'
+
+    LOJA = Column(Integer,  primary_key=True, nullable=False)
+    VALOR = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        return f"[loja='{self.LOJA}', valor='{self.VALOR}']"
+
+    def to_dict(self):
+        return {
+            "loja": self.LOJA,
+            "valor": float(self.VALOR),
+        }

@@ -2,6 +2,7 @@ import sys
 import os
 from flask import jsonify
 from models.cash_box_model import Cash_Box
+from models.cash_box_model import Fundo_de_caixa
 from configs.connection import DBconnection
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -17,6 +18,12 @@ class ResponseCashBox:
     def get_caixa_by_id(id):
         with DBconnection() as db:
             return db.session.query(Cash_Box).filter_by(ID=id).first()
+        
+    def get_fundo_de_caixa(self, loja):
+        with DBconnection() as db:
+            fundo_caixa = db.session.query(Fundo_de_caixa).filter_by(LOJA=loja).first()
+            return fundo_caixa.VALOR if fundo_caixa else 0.0
+
 
     def insert(self, id, data, num_doc, origem, tipo_operacao, valor, status, id_users, loja, tipo):
         with DBconnection() as db:
@@ -48,6 +55,8 @@ class CashBox_select_Controller:
             current_date = datetime.strptime(date_operacao, "%d/%m/%Y")
             data = self.response_CashBox.select()
             info_to_dict = [infos.to_dict() for infos in data]
+
+            fundo_caixa_valor = self.response_CashBox.get_fundo_de_caixa(loja)
 
             # Filtrar registros por loja
             records_for_store = [
@@ -107,6 +116,7 @@ class CashBox_select_Controller:
                     'entrada': total_entrada,
                     'saida': total_saida
                 },
+                'fundo_de_caixa': fundo_caixa_valor,
                 'status': 200
             }
             return jsonify(success_response)
@@ -132,6 +142,8 @@ class CashBox_select_Controller:
         
             select_dados = self.response_CashBox.select()
             select_dados_to_dict = [infos.to_dict() for infos in select_dados]
+
+            fundo_caixa_valor = self.response_CashBox.get_fundo_de_caixa(loja)
 
             records_for_store = [
                 boxCash for boxCash in select_dados_to_dict
@@ -171,6 +183,7 @@ class CashBox_select_Controller:
                     'entrada': total_entrada,
                     'saida': total_saida
                 },
+                'fundo_de_caixa': fundo_caixa_valor,
                 'status': 200
             })
         except Exception as e:
