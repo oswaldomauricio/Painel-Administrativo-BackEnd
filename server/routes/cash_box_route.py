@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from datetime import datetime
+import logging
 from infra.controllers.cash_box_controller import ResponseCashBox
 from infra.controllers.cash_box_controller import CashBox_select_Controller
 from infra.controllers.cash_box_controller import CashBox_insert_Controller
@@ -35,6 +36,7 @@ def get_cashbox_by_store_and_tipo_operacao():
     }
 
     result = CashBox_select.select_all_info_by_cashBox(get_info['loja'], get_info['date'])
+    logging.info("relatorio de caixa (data e loja): %s", result.get_json())
     return result.get_json()
 
 # Relatorio de caixa por periodo selecionado.
@@ -59,6 +61,7 @@ def get_cashbox_per_period_and_store():
     }
 
     result = CashBox_select.select_all_info_per_period(get_info['loja'], get_info['data_inicial'], get_info['data_final'])
+    logging.info("relatorio de caixa periodo (data inicial, data final e loja): %s", result.get_json())
     return result.get_json()
 
 # Inserir valor no relatorio de caixa.
@@ -98,7 +101,7 @@ def insert_cashbox():
 
     result = CashBox_insert.insert_info_cashbox(max_id+1, get_info['loja'], get_info['date'], get_info['tipo_operacao'], get_info['valor'], get_info['status'], get_info['numero_doc'], get_info['origem'], get_info['id_user'], get_info['tipo'])
     
-    
+    logging.info("Inserção de valor: %s", result.get_json())
     return result.get_json()
 
 # alterar status do valor para ser excluido.
@@ -140,4 +143,5 @@ def delete_cashbox():
         status = 0  # Permite alteração do status
 
     result = CashBox_delete.delete_info_cashbox(id, status)
+    logging.info("Remoção de valor do caixa: %s", result.get_json())
     return result.get_json()
