@@ -124,8 +124,6 @@ def delete_cashbox():
     # Buscar informações do caixa para validar a data da inserção e o usuário original
     cashbox_record = ResponseCashBox.get_caixa_by_id(id)
 
-    print(cashbox_record)
-
     if not cashbox_record:
         return jsonify({'error': 'Registro não encontrado!'}), 404
 
