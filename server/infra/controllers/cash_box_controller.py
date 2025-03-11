@@ -129,44 +129,57 @@ class CashBox_select_Controller:
     def select_all_info_per_period(self, loja, data_inicial, data_final):
         if not loja:
             return jsonify({"error": "O campo loja não foi informado.", 'status': 400})
-
+        
         if not data_inicial or not data_final:
             return jsonify({"error": "Os campos de data não foram informados.", 'status': 400})
-
+        
         try:
             date_start = datetime.strptime(data_inicial, "%d/%m/%Y")
             date_end = datetime.strptime(data_final, "%d/%m/%Y")
-
+            
             if date_start > date_end:
                 return jsonify({"error": "A data inicial não pode ser maior que a data final.", 'status': 400})
-        
+            
             select_dados = self.response_CashBox.select()
             select_dados_to_dict = [infos.to_dict() for infos in select_dados]
-
+            
             fundo_caixa_valor = self.response_CashBox.get_fundo_de_caixa(loja)
-
+            
             records_for_store = [
                 boxCash for boxCash in select_dados_to_dict
                 if boxCash.get('loja') == loja and boxCash.get('status') == 1
             ]
-
+            
             if not records_for_store:
                 return jsonify({
                     "error": "Nenhum registro encontrado para a loja especificada.",
                     "status": 404
                 })
-
+            
+            # Calcular saldo anterior ao período selecionado
+            saldo_anterior = 0.0
+            for record in records_for_store:
+                record_date = datetime.strptime(record.get('data'), "%d/%m/%Y")
+                valor = float(record.get('valor', 0)) if isinstance(record.get('valor'), Decimal) else record.get('valor')
+                
+                if record_date < date_start:
+                    if record.get('tipo_operacao') == 'ENTRADA':
+                        saldo_anterior += valor
+                    elif record.get('tipo_operacao') == 'SAIDA':
+                        saldo_anterior -= valor
+            
+            # Filtrar registros dentro do período selecionado
             filtered_records = [
                 record for record in records_for_store
                 if date_start <= datetime.strptime(record.get('data'), "%d/%m/%Y") <= date_end
             ]
-
+            
             filtered_records.sort(key=lambda record: datetime.strptime(record.get('data'), "%d/%m/%Y"))
-
-            saldo_total = 0.0
+            
+            saldo_total = saldo_anterior  # Começa com o saldo antes do período
             total_entrada = 0.0
             total_saida = 0.0
-
+            
             for record in filtered_records:
                 valor = float(record.get('valor', 0)) if isinstance(record.get('valor'), Decimal) else record.get('valor')
                 if record.get('tipo_operacao') == 'ENTRADA':
@@ -175,19 +188,21 @@ class CashBox_select_Controller:
                 elif record.get('tipo_operacao') == 'SAIDA':
                     total_saida += valor
                     saldo_total -= valor
-
+            
             return jsonify({
                 'Caixa': filtered_records,
                 'Saldo': {
                     'Saldo total': saldo_total,
                     'entrada': total_entrada,
-                    'saida': total_saida
+                    'saida': total_saida,
+                    # 'saldo_anterior': saldo_anterior
                 },
                 'fundo_de_caixa': fundo_caixa_valor,
                 'status': 200
             })
         except Exception as e:
             return jsonify({"error": f"Ocorreu um erro: {str(e)}", 'status': 400})
+
 
 
 
