@@ -21,6 +21,13 @@ instalar a versão do python > 3.11: https://www.python.org/downloads/
 instale a versão do visual studio 2022, e dentro do programa instale a versão Visual Studio Enterprise 2022 preview pois é necessario para algumas depencias de banco de dados que so rodam se estiver instalados: https://https://visualstudio.microsoft.com/pt-br/vs/
 ```
 
+```sh
+Baixe o instant Client e adicione no c:/ da sua maquina:
+
+https://www.oracle.com/br/database/technologies/instant-client/winx64-64-downloads.html
+
+ele serve para as instancias do banco de dados.
+```
 
 
 ## Instalação e Execução
