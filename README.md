@@ -23,7 +23,9 @@ Siga as etapas abaixo para executar o projeto frontend localmente:
 
 - Ative o ambiente virtual usando o comando `.venv\Scripts\activate` no cmd.
 
-- Instale as dependencias usando o pip `py -m pip install requests`
+- Instale as dependencias usando o pip `pip install -r requirements.txt`
+
+- Caso dê erro, baixe o visual studio interprise 2022 e tente novamente!
 
 ## Stacks utilizada
 
