@@ -37,6 +37,12 @@ class ResponseCashBox:
             db.session.query(Cash_Box).filter(
                 Cash_Box.ID == id).update({"STATUS": status})
             db.session.commit()
+    
+    def edit_values_cashbox(self, id, num_doc, origem, valor, tipo):
+        with DBconnection() as db:
+            db.session.query(Cash_Box).filter(
+                Cash_Box.ID == id).update({"ID": id, "NUM_DOC": num_doc, "ORIGEM": origem, "VALOR": valor, "TIPO": tipo})
+            db.session.commit()
 
 
 class CashBox_select_Controller:
@@ -251,3 +257,20 @@ class cashBox_delete_controller:
             return jsonify({'result': 'Registro excluido com sucesso.', 'status': 200})
         except Exception as e:
             return jsonify({'error': f'Erro ao inserir os dados: {str(e)}', 'status': 400})
+
+class cashBox_edit_controller:
+    def __init__(self, response_CashBox):
+        self.response_CashBox = response_CashBox
+
+    def edit_info_cashbox(self, id, num_doc, origem, valor, tipo):
+        try:
+            self.response_CashBox.edit_values_cashbox(id, num_doc, origem, valor, tipo)
+            result_edit = {
+                'numero_doc': num_doc,
+                'origem': origem,
+                'valor': valor,
+                'tipo': tipo
+            }
+            return jsonify({'result': result_edit, 'status': 200})
+        except Exception as e:
+            return jsonify({'error': f'Erro ao editar os dados: {str(e)}', 'status': 400})
