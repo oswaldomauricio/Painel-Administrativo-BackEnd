@@ -142,50 +142,5 @@ def delete_cashbox():
         status = 0  # Permite alteração do status
 
     result = CashBox_delete.delete_info_cashbox(id, status)
-<<<<<<< Updated upstream
     logging.info("Remoção de valor do caixa: %s", result.get_json())
-=======
-    logging.info("Remoção de valor do caixa: %s", id, result.get_json())
-    return result.get_json()
-
-
-@cashbox_bp.route('/cashbox/edit', methods=['PUT'])
-def edit_cashbox():
-    """
-    Esse método não exclui o registro do banco, apenas altera o valor do status para 0.
-    A função que calcula o saldo ignora registros com status 0.
-    Isso permite manter um histórico dos itens excluídos.
-    """
-
-    req_cashbox = request.get_json()
-
-    id = req_cashbox.get('id')
-    num_doc = req_cashbox.get('num_doc')
-    origem = req_cashbox.get('origem')
-    valor = req_cashbox.get('valor')
-    tipo = req_cashbox.get('tipo')
-    user_role = req_cashbox.get('role')  # Cargo do usuário (exemplo: "ADMIN" ou "USER")
-
-    if not id or not user_role or not num_doc or not origem or not valor or not tipo:
-        return jsonify({'error': 'Informações incompletas, favor verificar!'}), 400
-
-    cashbox_record = ResponseCashBox.get_caixa_by_id(id)
-
-    if not cashbox_record:
-        return jsonify({'error': 'Registro não encontrado!'}), 404
-
-    data_insercao = cashbox_record.DATA 
-    data_atual = datetime.today().date()
-
-    if user_role == "ADMIN":
-        status = 0
-    else:
-        if data_insercao != data_atual:
-            return jsonify({'error': 'Só é possível excluir registros no mesmo dia da inserção!'}), 403
-
-        status = 0  
-
-    result = CashBox_delete.delete_info_cashbox(id, status)
-    logging.info("Remoção de valor do caixa: %s", id, result.get_json())
->>>>>>> Stashed changes
     return result.get_json()
