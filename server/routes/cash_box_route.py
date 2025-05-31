@@ -5,6 +5,7 @@ from infra.controllers.cash_box_controller import ResponseCashBox
 from infra.controllers.cash_box_controller import CashBox_select_Controller
 from infra.controllers.cash_box_controller import CashBox_insert_Controller
 from infra.controllers.cash_box_controller import cashBox_delete_controller
+from infra.controllers.cash_box_controller import cashBox_edit_controller
 from infra.controllers.cash_box_controller import ResponseCashBox
 from flask_pydantic_spec import FlaskPydanticSpec
 cashbox_bp = Blueprint('cash box', __name__)
