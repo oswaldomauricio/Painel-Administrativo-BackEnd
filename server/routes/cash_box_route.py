@@ -5,6 +5,7 @@ from infra.controllers.cash_box_controller import ResponseCashBox
 from infra.controllers.cash_box_controller import CashBox_select_Controller
 from infra.controllers.cash_box_controller import CashBox_insert_Controller
 from infra.controllers.cash_box_controller import cashBox_delete_controller
+from infra.controllers.cash_box_controller import cashBox_edit_controller
 from infra.controllers.cash_box_controller import ResponseCashBox
 from flask_pydantic_spec import FlaskPydanticSpec
 cashbox_bp = Blueprint('cash box', __name__)
@@ -14,12 +15,11 @@ spec.register(cashbox_bp)
 
 response_cashBox = ResponseCashBox()
 
-# Instancie o controlador
 CashBox_select = CashBox_select_Controller(response_cashBox)
 CashBox_insert = CashBox_insert_Controller(response_cashBox)
 CashBox_delete = cashBox_delete_controller(response_cashBox)
+CashBox_edit = cashBox_edit_controller(response_cashBox)
 
-# Relatorio de caixa por data fixa e loja.
 @cashbox_bp.route('/cashbox/relatorio', methods=['POST'])
 def get_cashbox_by_store_and_tipo_operacao():
     req_cashbox = request.get_json()
